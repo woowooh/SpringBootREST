@@ -6,8 +6,7 @@
         <mavon-editor style="height: 100%; border-radius: 7px"        
           :subfield="false"
           :placeholder="'...'"
-          :fontSize="'14'"
-          @save="save"
+          :fontSize="'14'"          
           v-model="blog.content"
         ></mavon-editor>  
       </div>  
@@ -48,10 +47,6 @@ export default {
       console.log("workd")
       this.editComment = !this.editComment
     },
-    save: function(value, render) {
-      console.log("value", value)
-      console.log("render", render)
-    }
   },
   components: {
     mavonEditor,
