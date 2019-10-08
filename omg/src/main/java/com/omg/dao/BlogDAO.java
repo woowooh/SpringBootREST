@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 public interface BlogDAO {
     void addOne(Blog blog);
-    Blog findById(long id);
+    void updateOne(Blog blog);
+    void deleteById(long blog_id);
+    Blog findById(long blog_id);
     List<Blog> findAll();
 }

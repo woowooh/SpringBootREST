@@ -1,11 +1,14 @@
 package com.omg.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Blog {
 
     private long blogId;
     private String title;
     private String content;
     private String authorName;
+    @JsonIgnore
     private long userId;
 
     public long getBlogId() {

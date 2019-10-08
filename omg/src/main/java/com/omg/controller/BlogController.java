@@ -1,5 +1,6 @@
 package com.omg.controller;
 
+import com.omg.dto.Result;
 import com.omg.po.Blog;
 import com.omg.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,26 @@ public class BlogController {
     }
 
     @PostMapping("/addBlog")
-    public void addBlog(@RequestBody Blog blog) {
+    public Result addBlog(@RequestBody Blog blog) {
         blogService.addBlog(blog);
+        return Result.successResult();
+    }
+
+    @PostMapping("/updateBlog")
+    public Result updateBlog(@RequestBody Blog blog) {
+        blogService.updateBlog(blog);
+        return Result.successResult();
     }
 
     @GetMapping("/blog/{blogId}")
-    public Blog getBlog(@PathVariable("blogId")long blogId) {
+    public Result getBlog(@PathVariable("blogId")long blogId) {
         Blog b = blogService.findBlog(blogId);
-        return b;
+        return Result.successResult(b);
+    }
+
+    @GetMapping("/deleteBlog/{blogId}")
+    public Result deleteBlog(@PathVariable("blogId")long blogId) {
+        blogService.deleteBlog(blogId);
+        return Result.successResult();
     }
 }

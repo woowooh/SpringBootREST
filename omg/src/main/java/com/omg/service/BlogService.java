@@ -21,8 +21,16 @@ public class BlogService {
         blogDAO.addOne(blog);
     }
 
+    public void updateBlog(Blog blog){
+        blogDAO.updateOne(blog);
+    }
+
     public Blog findBlog(long blog_id) {
         Blog b = blogDAO.findById(blog_id);
         return b;
+    }
+
+    public void deleteBlog(long blog_id) {
+        blogDAO.deleteById(blog_id);
     }
 }

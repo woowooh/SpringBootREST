@@ -14,19 +14,34 @@
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
-        select
+        SELECT
         <include refid="Base_Column_List" />
-        from blog_t
+        from blog_t where is_delete = 0;
     </select>
 
     <select id="findById" resultMap="BaseResultMap" parameterType="long">
-        select
+        SELECT
         <include refid="Base_Column_List" />
-        from blog_t
+        from blog_t where blog_id = #{blogId} and is_delete = 0;
     </select>
 
     <insert id="addOne" parameterType="com.omg.po.Blog">
-        insert into blog_t (title, content, authorName, userId)
-        values (#{title}, #{content}, #{authorName}, #{userId})
+        INSERT into blog_t (title, content, author_name, user_id, blog_id)
+        values (#{title}, #{content}, #{authorName}, #{userId}, #{blogId})
+        and is_delete = 0;
     </insert>
+
+    <update id="updateOne" parameterType="com.omg.po.Blog">
+        UPDATE blog_t
+            SET
+            title = #{title},
+            content = #{content}
+        where blog_id = #{blogId} and is_delete = 0;
+    </update>
+
+    <update id="deleteById" parameterType="long">
+        UPDATE blog_t
+        SET is_delete = 1
+        where blog_id = #{blogId} and is_delete = 0;
+    </update>
 </mapper>
