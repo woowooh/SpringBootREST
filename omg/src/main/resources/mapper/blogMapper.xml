@@ -27,8 +27,7 @@
 
     <insert id="addOne" parameterType="com.omg.po.Blog">
         INSERT into blog_t (title, content, author_name, user_id, blog_id)
-        values (#{title}, #{content}, #{authorName}, #{userId}, #{blogId})
-        and is_delete = 0;
+        values (#{title}, #{content}, #{authorName}, #{userId}, #{blogId});
     </insert>
 
     <update id="updateOne" parameterType="com.omg.po.Blog">
