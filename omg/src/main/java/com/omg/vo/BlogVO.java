@@ -1,13 +1,7 @@
-package com.omg.po;
+package com.omg.vo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Blog {
-
-    private long blogId;
-    private String title;
-    private String content;
-    private String authorName;
-    private long userId;
-
+public class BlogVO {
     public long getBlogId() {
         return blogId;
     }
@@ -47,4 +41,10 @@ public class Blog {
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
+    private long blogId;
+    private String title;
+    private String content;
+    private String authorName;
+    private long userId;
 }

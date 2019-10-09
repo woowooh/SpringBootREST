@@ -1,6 +1,14 @@
 <template>
   <div class="add-blog">
     <h2>添加博客</h2>
+    <input type="text" v-model="blog.title" placeholder="博客标题">
+    <div id="authorNames">
+      <select v-model="blog.authorName">
+        <option v-for="(name, index) in authors.names" :key="index">
+          {{ name }}
+        </option>
+      </select>
+    </div>
     <transition name="fade">
       <div id="editor" v-show="editComment">
         <mavon-editor style="height: 100%; border-radius: 7px"        
@@ -30,7 +38,7 @@ export default {
         title: "",
         content: "",
         categories: [],
-        author: "",        
+        authorName: "",        
       },
       authors: {
         names: ["xf", "www", "Q v Q"],
@@ -41,7 +49,12 @@ export default {
   },
   methods: {
     submit: function() {
-      console.log(this.blog.content)
+      console.log(this.blog);
+      var path = 'http://localhost:8082/addBlog'
+      axios.post(path, this.blog)
+        .then(res => {
+          console.log(res);
+        })
     },
     addComment: function() {
       console.log("workd")
@@ -126,4 +139,9 @@ h3{
   margin-top: 10px;
 }
 
+input[type="text"]{
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
 </style>

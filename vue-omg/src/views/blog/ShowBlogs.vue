@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #show-blogs{
     max-width: 800px;
     margin: 0 auto;
@@ -96,6 +96,4 @@ input[type="text"]{
   width: 100%;
   box-sizing: border-box;
 }
-
-
 </style>
