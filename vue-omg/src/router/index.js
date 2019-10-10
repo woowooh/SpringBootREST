@@ -22,7 +22,7 @@ export const routes = [
     component: AddBlog,          
   },
   {
-    path: '/blogDetail',
+    path: '/blog/:id',
     name: '博客细节',
     component: SingleBlog,          
   }

@@ -1,113 +1,44 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div class="container" style="background-color: #E8E5E4">
+    <div class="row">
+      <div class="blogs" v-for="(blog, index) in blogs" :key=index>
+          <div class="card text" style="width: 15rem;">
+              <img class="card-img-top" :src=blog.imgPath alt="Card image cap" height="">
+              <div class="card-body">
+                  <h4 class="card-title">{{ blog.title }}</h4>
+                  <p class="card-text">{{ blog.content }}</p>
+                  <small class="text-muted">Published by {{ blog.authorName }} 3 mins ago</small>
+                  <router-link v-bind:to="'/blog/' + blog.blogId" class="btn btn-outline-dark btn-sm pull-right">
+                    Read More 
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>                    
+                  </router-link>
+              </div>
+          </div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'HelloWorld',
-  data () {
+  data(){
     return {
-      msg: 'Welcome to Your Vue.js App'
+      blogs:[],
     }
-  }
+  },
+  created(){    
+    var path = "http://localhost:8082/blogList"
+    axios.get(path)
+    .then(res => {
+      let data = res.data;      
+      for (let i = 0; i < data.length; i++) {
+        let j = i % 12
+        data[i].imgPath = `./../static/imgs/${j}.jpg`;
+      }  
+      this.blogs = res.data;    
+    })
+  },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

@@ -11,12 +11,13 @@
     </div>
     <transition name="fade">
       <div id="editor" v-show="editComment">
-        <mavon-editor style="height: 100%; border-radius: 7px"        
+        <mavon-editor ref="editor" style="height: 100%; border-radius: 7px"        
           :subfield="false"
           :placeholder="'...'"
-          :fontSize="'14'"          
+          :fontSize="'14'" 
           v-model="blog.content"
-        ></mavon-editor>  
+        >
+        </mavon-editor>  
       </div>  
     </transition>
     <button @click.prevent="addComment">添加评论</button>  
@@ -48,13 +49,12 @@ export default {
     }
   },
   methods: {
-    submit: function() {
-      console.log(this.blog);
+    submit: function() {    
       var path = 'http://localhost:8082/addBlog'
-      axios.post(path, this.blog)
-        .then(res => {
-          console.log(res);
-        })
+      // axios.post(path, this.blog)
+      //   .then(res => {
+      //     console.log(res);
+      //   })
     },
     addComment: function() {
       console.log("workd")

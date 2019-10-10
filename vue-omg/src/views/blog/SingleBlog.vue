@@ -1,14 +1,33 @@
 <template>
-	<div id="single-blog">
-		<h1>{{blog.title}}</h1>
-		<article>{{blog.content}}</article>
-		<p>作者: {{blog.author}}</p>
-		<p>分类:</p>
-		<ul>
-			<li v-for="category in blog.categories" :key="category">
-				{{category}}
-			</li>
-		</ul>
+	<div id="container">
+		<div id="single-blog">
+			<h1>{{blog.title}}</h1>
+			<article>{{blog.content}}</article>
+			<p>作者: {{blog.authorName}}</p>
+		</div>
+		<div id="single-blog">
+			<ul class="comments">
+				<li v-for="(comment, index) in comments" :key="index">
+				</li>
+			</ul>
+			<h1>{{blog.title}}</h1>
+			<p>作者: {{blog.authorName}}</p>
+		</div>
+		<transition name="fade">
+      	<div id="editor" v-show="editComment">
+			<mavon-editor ref="editor" style="height: 10px;border-radius: 7px"        
+			:subfield="false"
+			:placeholder="'...'"
+			:fontSize="'14'" 
+			:toolbarsFlag=false
+			v-model="blog.content"
+			>
+        	</mavon-editor>  
+      	</div>  
+    	</transition>
+		<br>
+		<button class="btn btn-outline-dark btn-sm" @click.prevent="addComment">添加评论</button>  
+    	<button class="btn btn-outline-dark btn-sm" @click.prevent="submit">发布</button>  
 	</div>
 </template>
 
@@ -19,24 +38,47 @@ import axios from 'axios'
 		data(){
 			return{
 				id:this.$route.params.id,
-				blog:{}
+				blog:{},
+				editComment: false,
+				comments: {},
 			}
 		},
 		created(){
-			// this.$http.get('https://wd1182543348jfzvtq.wilddogio.com/posts/' + this.id + ".json")
-			axios.get('/posts/' + this.id + ".json")
-				.then((data) => {
-					this.blog = data.data;
-				})
+			var id = this.$route.params.id
+			var path = "http://localhost:8082/blog/" +  id
+			axios.get(path)
+			.then(res => {
+				this.blog = res.data.data;         
+			})
+		},
+		methods: {
+			submit: function() {    
+			var path = 'http://localhost:8082/addBlog'
+				// axios.post(path, this.blog)
+				//   .then(res => {
+				//     console.log(res);
+				//   })
+			},
+			addComment: function() {
+				console.log("workd")
+				this.editComment = !this.editComment
+    		},
 		}
 	}
 </script>
-<style>
-	#single-blog{
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 20px;
-		background: #eee;
-		border: 1px dotted #aaa;
-	}
+<style scoped>
+
+#single-blog{
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 20px;
+	background: #eee;
+	border: 1px dotted #aaa;
+}
+
+#editor {
+    margin: auto;
+    width: 45%;    
+	/* height: 10px; */
+}
 </style>

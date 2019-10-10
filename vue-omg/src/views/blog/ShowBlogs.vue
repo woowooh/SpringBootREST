@@ -8,7 +8,6 @@
           <router-link v-bind:to="'/blog/' + blog.id">
           <h2 v-rainbow>{{ blog.title }}</h2>
         </router-link>
-
           <article>
               {{ blog.content }}
           </article>
@@ -20,6 +19,7 @@
 <script>
 import BlogHeader from './BlogHeader'
 import axios from 'axios'
+
 export default {
   name: 'show-blogs',
   data(){
