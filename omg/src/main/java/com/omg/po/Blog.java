@@ -5,8 +5,18 @@ public class Blog {
     private long blogId;
     private String title;
     private String content;
+    private String contentHTML;
     private String authorName;
     private long userId;
+
+
+    public String getContentHTML() {
+        return contentHTML;
+    }
+
+    public void setContentHTML(String contentHTML) {
+        this.contentHTML = contentHTML;
+    }
 
     public long getBlogId() {
         return blogId;

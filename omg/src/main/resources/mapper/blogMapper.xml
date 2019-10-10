@@ -6,11 +6,12 @@
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="author_name" property="authorName" jdbcType="VARCHAR" />
+        <result column="content_HTML" property="contentHTML" jdbcType="VARCHAR" />
         <result column="user_id" property="userId" jdbcType="BIGINT" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        blog_id, title, content, author_name, user_id
+        blog_id, title, content, author_name, content_HTML, user_id
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
@@ -26,21 +27,40 @@
     </select>
 
     <insert id="addOne" parameterType="com.omg.po.Blog">
-        INSERT into blog_t (title, content, author_name, user_id, blog_id)
-        values (#{title}, #{content}, #{authorName}, #{userId}, #{blogId});
+        INSERT into blog_t
+            (
+                title,
+                content,
+                author_name,
+                content_HTML,
+                user_id,
+                blog_id
+            )
+        values
+            (
+                #{title},
+                #{content},
+                #{authorName},
+                #{contentHTML},
+                #{userId},
+                #{blogId}
+            );
     </insert>
 
     <update id="updateOne" parameterType="com.omg.po.Blog">
         UPDATE blog_t
             SET
-            title = #{title},
-            content = #{content}
-        where blog_id = #{blogId} and is_delete = 0;
+                title = #{title},
+                content = #{content},
+                content_HTML = #{contentHTML}
+        where
+                blog_id = #{blogId} and is_delete = 0;
     </update>
 
     <update id="deleteById" parameterType="long">
         UPDATE blog_t
-        SET is_delete = 1
-        where blog_id = #{blogId} and is_delete = 0;
+            SET is_delete = 1
+        where
+            blog_id = #{blogId} and is_delete = 0;
     </update>
 </mapper>

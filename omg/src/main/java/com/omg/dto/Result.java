@@ -3,12 +3,12 @@ package com.omg.dto;
 public class Result {
     private Integer code;
     private String msg;
-    private Object detail;
+    private Object data;
 
-    public Result(Integer code, String msg, Object detail) {
+    public Result(Integer code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
-        this.detail = detail;
+        this.data = data;
     }
 
     public static Result successResult() {
@@ -35,11 +35,11 @@ public class Result {
         this.msg = msg;
     }
 
-    public Object getDetail() {
-        return detail;
+    public Object getData() {
+        return data;
     }
 
-    public void setDetail(Object detail) {
-        this.detail = detail;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
