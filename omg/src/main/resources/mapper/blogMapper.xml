@@ -20,7 +20,7 @@
         from blog_t where is_delete = 0;
     </select>
 
-    <select id="findById" resultMap="BaseResultMap" parameterType="long">
+    <select id="findById" resultMap="BaseResultMap" parameterType="Long">
         SELECT
         <include refid="Base_Column_List" />
         from blog_t where blog_id = #{blogId} and is_delete = 0;

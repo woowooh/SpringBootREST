@@ -2,12 +2,12 @@ package com.omg.po;
 
 public class Blog {
 
-    private long blogId;
+    private Long blogId;
     private String title;
     private String content;
     private String contentHTML;
     private String authorName;
-    private long userId;
+    private Long userId;
 
 
     public String getContentHTML() {
@@ -18,11 +18,11 @@ public class Blog {
         this.contentHTML = contentHTML;
     }
 
-    public long getBlogId() {
+    public Long getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(long blogId) {
+    public void setBlogId(Long blogId) {
         this.blogId = blogId;
     }
 
@@ -50,11 +50,11 @@ public class Blog {
         this.authorName = authorName;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 }

@@ -15,7 +15,7 @@
 		</div>
 		<transition name="fade">
       	<div id="editor" v-show="editComment">
-			<mavon-editor ref="editor" style="height: 10px;border-radius: 7px"        
+			<mavon-editor ref="editor" style="border-radius: 7px"        
 			:subfield="false"
 			:placeholder="'...'"
 			:fontSize="'14'" 

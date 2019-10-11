@@ -2,11 +2,11 @@ package com.omg.vo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BlogVO {
-    public long getBlogId() {
+    public Long getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(long blogId) {
+    public void setBlogId(Long blogId) {
         this.blogId = blogId;
     }
 
@@ -34,17 +34,17 @@ public class BlogVO {
         this.authorName = authorName;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    private long blogId;
+    private Long blogId;
     private String title;
     private String content;
     private String authorName;
-    private long userId;
+    private Long userId;
 }
