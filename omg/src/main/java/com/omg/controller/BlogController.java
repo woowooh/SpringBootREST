@@ -3,6 +3,7 @@ package com.omg.controller;
 import com.omg.dto.Result;
 import com.omg.po.Blog;
 import com.omg.service.BlogService;
+import com.omg.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +33,13 @@ public class BlogController {
     }
 
     @GetMapping("/blog/{blogId}")
-    public Result getBlog(@PathVariable("blogId")long blogId) {
+    public Result getBlog(@PathVariable("blogId")Long blogId) {
         Blog b = blogService.findBlog(blogId);
         return Result.successResult(b);
     }
 
     @GetMapping("/deleteBlog/{blogId}")
-    public Result deleteBlog(@PathVariable("blogId")long blogId) {
+    public Result deleteBlog(@PathVariable("blogId")Long blogId) {
         blogService.deleteBlog(blogId);
         return Result.successResult();
     }

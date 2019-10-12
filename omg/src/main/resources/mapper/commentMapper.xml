@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.omg.dao.CommentDAO">
+    <resultMap id="commentResultMap" type="com.omg.po.Comment" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="words" property="words" jdbcType="VARCHAR" />
+        <result column="author_name" property="authorName" jdbcType="VARCHAR" />
+        <result column="words_HTML" property="wordsHTML" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="blog_id" property="blogId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id,
+        words,
+        author_name,
+        words_HTML,
+        user_id,
+        blog_id
+    </sql>
+
+    <select id="findById" resultMap="commentResultMap" parameterType="Long">
+        SELECT
+            <include refid="Base_Column_List" />
+        from comment_t where id = #{commentId} and is_delete = 0;
+    </select>
+
+    <insert id="addOne" parameterType="com.omg.po.Comment">
+        INSERT into comment_t
+            (
+                words,
+                author_name,
+                words_HTML,
+                user_id,
+                blog_id
+            )
+        values
+            (
+                #{words},
+                #{authorName},
+                #{wordsHTML},
+                #{userId},
+                #{commentId}
+            );
+    </insert>
+
+    <update id="updateOne" parameterType="com.omg.po.Comment">
+        UPDATE comment_t
+            SET
+                title = #{title},
+                words = #{words},
+                words_HTML = #{wordsHTML}
+        where
+                id = #{commentId} and is_delete = 0;
+    </update>
+
+    <update id="deleteById" parameterType="Long">
+        UPDATE comment_t
+            SET is_delete = 1
+        where
+            id = #{commentId} and is_delete = 0;
+    </update>
+</mapper>

@@ -1,6 +1,7 @@
 package com.omg.dao;
 
 import com.omg.po.Blog;
+import com.omg.po.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 public interface BlogDAO {
     void addOne(Blog blog);
     void updateOne(Blog blog);
-    void deleteById(long blog_id);
-    Blog findById(long blog_id);
+    void deleteById(Long blogId);
+    Blog findById(Long blogId);
     List<Blog> findAll();
+    List<Comment> getCommentsById(Long blogId);
 }
