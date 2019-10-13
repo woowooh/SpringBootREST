@@ -10,7 +10,10 @@
 export default {
     name: "blog-detail",
     props: {
-        blog: {},
+        blog: {
+            type: Object,
+            default: ()=> ({})
+        },
     },
 }
 </script>

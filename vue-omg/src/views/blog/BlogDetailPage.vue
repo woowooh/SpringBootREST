@@ -23,8 +23,7 @@ export default{
 				words: "",
 				wordsHTML: "", 
 			},			
-			comments: {
-			},
+			comments: [],
 		}
 	},
 	created(){
@@ -45,15 +44,15 @@ export default{
 			var path = "http://localhost:8082/blog/" +  blogId
 			axios.get(path)
 			.then(res => {
-				this.blog = res.data.data;         
+				var d = res.data.data;
+				this.blog = d || this.blog     
 			})
 		},
 		getBlogComments: function(blogId) {			
 			var path = "http://localhost:8082/Comments/" +  blogId
 			axios.get(path)
 			.then(res => {
-				this.comments = res.data.data;  
-				console.log(this.comments)       
+				this.comments = res.data.data;  							     
 			})
 		},
 		resetInput: function() {

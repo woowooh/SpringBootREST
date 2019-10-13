@@ -38,6 +38,12 @@ public class CommentController {
         return Result.successResult(comments);
     }
 
+    @GetMapping("/deleteComment/{commentId}")
+    public Result deleteComment(@PathVariable("commentId")Long commentId) {
+        CommentService.deleteComment(commentId);
+        return Result.successResult();
+    }
+
 //    @GetMapping("/deleteComment/{CommentId}")
 //    public Result deleteComment(@PathVariable("CommentId")long CommentId) {
 //        CommentService.deleteComment(CommentId);

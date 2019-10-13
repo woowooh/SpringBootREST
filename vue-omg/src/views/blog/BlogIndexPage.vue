@@ -21,7 +21,7 @@ export default {
         let j = i % 12
         data[i].imgPath = `./../static/imgs/${j}.jpg`;
       }  
-      this.blogs = res.data;    
+      this.blogs = res.data;        
     })
   },
   components: {

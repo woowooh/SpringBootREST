@@ -1,5 +1,5 @@
 <template>
-    <div class="commentBox">
+    <div class="commentBox" style="width: 68%;margin: 0 auto; width: 68%;clear: both">
         <transition name="fade">
             <div id="editor" v-show="editComment">
                 <mavon-editor ref="editor" style="border-radius: 7px"        
