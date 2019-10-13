@@ -26,16 +26,16 @@
             blog.content,
             blog.author_name,
             blog.content_HTML,
-            blog.user_id,
-            comment.id AS comment_id,
-            comment.words AS comment_words,
-            comment.words_HTML AS comment_words_HTML,
-            comment.author_name AS comment_author_name,
-            comment.user_id AS comment_user_id,
-            comment.blog_id AS comment_blog_id
+            blog.user_id
+            <!--comment.id AS comment_id,-->
+            <!--comment.words AS comment_words,-->
+            <!--comment.words_HTML AS comment_words_HTML,-->
+            <!--comment.author_name AS comment_author_name,-->
+            <!--comment.user_id AS comment_user_id,-->
+            <!--comment.blog_id AS comment_blog_id-->
         FROM
             `blog_t` blog
-        LEFT JOIN `comment_t` comment ON blog.id = comment.blog_id
+        <!--LEFT JOIN `comment_t` comment ON blog.id = comment.blog_id-->
     </select>
 
     <select id="findById" resultMap="BlogResultMap" parameterType="Long">
@@ -45,24 +45,24 @@
             blog.content,
             blog.author_name,
             blog.content_HTML,
-            blog.user_id,
-            comment.id AS comment_id,
-            comment.words AS comment_words,
-            comment.words_HTML AS comment_words_HTML,
-            comment.author_name AS comment_author_name,
-            comment.user_id AS comment_user_id,
-            comment.blog_id AS comment_blog_id
+            blog.user_id
+            <!--comment.id AS comment_id,-->
+            <!--comment.words AS comment_words,-->
+            <!--comment.words_HTML AS comment_words_HTML,-->
+            <!--comment.author_name AS comment_author_name,-->
+            <!--comment.user_id AS comment_user_id,-->
+            <!--comment.blog_id AS comment_blog_id-->
         FROM
-            `comment_t` comment,
+            <!--`comment_t` comment,-->
             `blog_t` blog
         WHERE
-            blog.id = comment.blog_id
-        AND
+            <!--blog.id = comment.blog_id-->
+        <!--AND-->
             blog.id = #{id}
         AND
             blog.is_delete = 0
-        AND
-            comment.is_delete = 0
+        <!--AND-->
+            <!--comment.is_delete = 0-->
     </select>
 
     <insert id="addOne" parameterType="com.omg.po.Blog">

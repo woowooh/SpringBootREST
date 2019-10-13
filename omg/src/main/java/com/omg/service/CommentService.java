@@ -12,8 +12,8 @@ public class CommentService {
     @Autowired
     CommentDAO commentDAO;
 
-    public List<Comment> getComments(){
-        List<Comment> comments = commentDAO.findAll();
+    public List<Comment> getComments(Long blogId){
+        List<Comment> comments = commentDAO.listByBlogId(blogId);
         return comments;
     }
 

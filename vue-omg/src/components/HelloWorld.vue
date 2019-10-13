@@ -8,7 +8,7 @@
                   <h4 class="card-title">{{ blog.title }}</h4>
                   <p class="card-text">{{ blog.content }}</p>
                   <small class="text-muted">Published by {{ blog.authorName }} 3 mins ago</small>
-                  <router-link v-bind:to="'/blog/' + blog.blogId" class="btn btn-outline-dark btn-sm pull-right">
+                  <router-link v-bind:to="'/blog/' + blog.id" class="btn btn-outline-dark btn-sm pull-right">
                     Read More 
                     <i class="fa fa-arrow-right" aria-hidden="true"></i>                    
                   </router-link>

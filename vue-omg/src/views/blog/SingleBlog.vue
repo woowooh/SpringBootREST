@@ -8,10 +8,12 @@
 		<div id="single-blog">
 			<ul class="comments">
 				<li v-for="(comment, index) in comments" :key="index">
+					<div class="comment">
+						<p>{{ comment.words }}<p>
+						<p>{{ comment.wordsHTML}}</p>
+					</div>
 				</li>
 			</ul>
-			<h1>{{blog.title}}</h1>
-			<p>作者: {{blog.authorName}}</p>
 		</div>
 		<transition name="fade">
       	<div id="editor" v-show="editComment">
@@ -20,7 +22,7 @@
 			:placeholder="'...'"
 			:fontSize="'14'" 
 			:toolbarsFlag=false
-			v-model="blog.content"
+			v-model="comment.words"
 			>
         	</mavon-editor>  
       	</div>  
@@ -39,17 +41,15 @@ import axios from 'axios'
 			return{
 				id:this.$route.params.id,
 				blog:{},
+				comment: {},
 				editComment: false,
 				comments: {},
 			}
 		},
 		created(){
-			var id = this.$route.params.id
-			var path = "http://localhost:8082/blog/" +  id
-			axios.get(path)
-			.then(res => {
-				this.blog = res.data.data;         
-			})
+			var blogId = this.$route.params.id
+			this.getBlog(blogId)
+			this.getBlogComments(blogId)
 		},
 		methods: {
 			submit: function() {    
@@ -62,7 +62,22 @@ import axios from 'axios'
 			addComment: function() {
 				console.log("workd")
 				this.editComment = !this.editComment
-    		},
+			},
+			getBlog: function(blogId) {				
+				var path = "http://localhost:8082/blog/" +  blogId
+				axios.get(path)
+				.then(res => {
+					this.blog = res.data.data;         
+				})
+			},
+			getBlogComments: function(blogId) {			
+				var path = "http://localhost:8082/Comments/" +  blogId
+				axios.get(path)
+				.then(res => {
+					this.comments = res.data.data;  
+					console.log(this.comments)       
+				})
+			}
 		}
 	}
 </script>

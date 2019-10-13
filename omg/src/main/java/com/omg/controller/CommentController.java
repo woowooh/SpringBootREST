@@ -26,12 +26,18 @@ public class CommentController {
 //        return Result.successResult();
 //    }
 
-//    @GetMapping("/Comment/{CommentId}")
-//    public Result getComment(@PathVariable("CommentId")long CommentId) {
-//        Comment b = CommentService.findComment(CommentId);
-//        return Result.successResult(b);
-//    }
-//
+    @GetMapping("/Comment/{CommentId}")
+    public Result getComment(@PathVariable("CommentId")Long CommentId) {
+        Comment b = CommentService.findComment(CommentId);
+        return Result.successResult(b);
+    }
+
+    @GetMapping("/Comments/{BlogId}")
+    public Result getComments(@PathVariable("BlogId")Long BlogId) {
+        List<Comment> comments = CommentService.getComments(BlogId);
+        return Result.successResult(comments);
+    }
+
 //    @GetMapping("/deleteComment/{CommentId}")
 //    public Result deleteComment(@PathVariable("CommentId")long CommentId) {
 //        CommentService.deleteComment(CommentId);

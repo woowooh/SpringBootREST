@@ -1,99 +1,44 @@
 <template>
-  <div>
-    <blog-header/>    
-    <div id="show-blogs">
-      <h1>博客总览</h1>
-      <input type="text" v-model="search" placeholder="搜索">
-      <div v-for="blog in filteredBlogs" class="single-blog" :key="blog.title">
-          <router-link v-bind:to="'/blog/' + blog.id">
-          <h2 v-rainbow>{{ blog.title }}</h2>
-        </router-link>
-          <article>
-              {{ blog.content }}
-          </article>
-      </div>
+  <div class="container" style="background-color: #E8E5E4">
+    <div class="row">
+      <div class="blogs" v-for="(blog, index) in blogs" :key=index>
+          <div class="card text" style="width: 15rem;">
+              <img class="card-img-top" :src=blog.imgPath alt="Card image cap" height="">
+              <div class="card-body">
+                  <h4 class="card-title">{{ blog.title }}</h4>
+                  <p class="card-text">{{ blog.content }}</p>
+                  <small class="text-muted">Published by {{ blog.authorName }} 3 mins ago</small>
+                  <router-link v-bind:to="'/blog/' + blog.id" class="btn btn-outline-dark btn-sm pull-right">
+                    Read More 
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>                    
+                  </router-link>
+              </div>
+          </div>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
-import BlogHeader from './BlogHeader'
 import axios from 'axios'
 
 export default {
-  name: 'show-blogs',
   data(){
     return {
-        blogs:[],
-        search:""
+      blogs:[],
     }
   },
-  created(){
-    // this.$http.get('https://wd1182543348jfzvtq.wilddogio.com/posts.json')
-    var path = './../static/posts.json'
+  created(){    
+    var path = "http://localhost:8082/blogList"
     axios.get(path)
-        .then(function(data){
-        return data.data;
-        })
-      .then((data) => {
-        var blogsArray = [];
-        for(let key in data){
-          data[key].id = key;
-          blogsArray.push(data[key]);
-        }
-        this.blogs = blogsArray;
-      })
+    .then(res => {
+      let data = res.data;      
+      for (let i = 0; i < data.length; i++) {
+        let j = i % 12
+        data[i].imgPath = `./../static/imgs/${j}.jpg`;
+      }  
+      this.blogs = res.data;    
+    })
   },
-  computed:{
-    filteredBlogs:function(){
-        return this.blogs.filter((blog) =>{
-            return blog.title.match(this.search);
-        })
-    }
-  },
-  filters:{
-    // "to-uppercase":function(value){
-    //  return value.toUpperCase();
-    // }
-    toUppercase(value){
-        return value.toUpperCase();
-    }
-  },
-  components: {
-    BlogHeader
-  },
-  directives:{
-    'rainbow':{
-        bind(el,binding,vnode){
-            // el.style.color = "#" + Math.random().toString(16).slice(2,8);
-        }
-    }
-  }
 }
 </script>
-
-<style scoped>
-#show-blogs{
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.single-blog{
-    padding: 20px;
-    margin: 20px 0;
-    box-sizing: border-box;
-    background: #eee;
-  border: 1px dotted #aaa;
-}
-
-#show-blogs a{
-  color: #444;
-  text-decoration: none;
-}
-
-input[type="text"]{
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-}
-</style>

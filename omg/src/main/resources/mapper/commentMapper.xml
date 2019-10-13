@@ -22,7 +22,23 @@
     <select id="findById" resultMap="commentResultMap" parameterType="Long">
         SELECT
             <include refid="Base_Column_List" />
-        from comment_t where id = #{commentId} and is_delete = 0;
+        FROM
+            comment_t
+        WHERE
+            id = #{commentId}
+        AND
+            is_delete = 0;
+    </select>
+
+    <select id="listByBlogId" resultMap="commentResultMap" parameterType="Long">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM
+            comment_t
+        WHERE
+            blog_id = #{blogId}
+        AND
+            is_delete = 0
     </select>
 
     <insert id="addOne" parameterType="com.omg.po.Comment">
@@ -34,7 +50,7 @@
                 user_id,
                 blog_id
             )
-        values
+        VALUES
             (
                 #{words},
                 #{authorName},
@@ -45,19 +61,26 @@
     </insert>
 
     <update id="updateOne" parameterType="com.omg.po.Comment">
-        UPDATE comment_t
-            SET
-                title = #{title},
-                words = #{words},
-                words_HTML = #{wordsHTML}
-        where
-                id = #{commentId} and is_delete = 0;
+        UPDATE
+            comment_t
+        SET
+            title = #{title},
+            words = #{words},
+            words_HTML = #{wordsHTML}
+        WHERE
+            id = #{commentId}
+        AND
+            is_delete = 0;
     </update>
 
     <update id="deleteById" parameterType="Long">
-        UPDATE comment_t
-            SET is_delete = 1
-        where
-            id = #{commentId} and is_delete = 0;
+        UPDATE
+            comment_t
+        SET
+            is_delete = 1
+        WHERE
+            id = #{commentId}
+        AND
+            is_delete = 0;
     </update>
 </mapper>
