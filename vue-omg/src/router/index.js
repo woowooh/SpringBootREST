@@ -1,29 +1,26 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
-import ShowBlogs from '@/views/blog/ShowBlogs.vue'
-import AddBlog from '@/views/blog/AddBlog.vue'
-import SingleBlog from '@/views/blog/SingleBlog.vue'  
+import BlogIndexPage from '@/views/blog/BlogIndexPage.vue'
+import AddBlogPage from '@/views/blog/AddBlogPage.vue'
+import BlogDetailPage from '@/views/blog/BlogDetailPage.vue'  
 
 export const routes = [
   {
     path: '/',
-    name: 'HelloWorld',
-    component: HelloWorld
+    name: 'ShowBlogs',
+    component: BlogIndexPage
   },
   {
     path: '/blog',
-    name: '博客',
-    component: ShowBlogs,          
+    name: '博客首页',
+    component: BlogIndexPage,          
   },
   {
     path: '/add',
     name: '添加博客',
-    component: AddBlog,          
+    component: AddBlogPage,          
   },
   {
     path: '/blog/:id',
     name: '博客细节',
-    component: SingleBlog,          
+    component: BlogDetailPage,          
   }
 ]

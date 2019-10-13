@@ -28,11 +28,12 @@
 <script>
 import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
+
 import 'mavon-editor/dist/css/index.css'
 
 export default {
   // https://jsonplaceholder.typicode.com
-  name: "addBlog",
+  name: "add-blog-page",
   data() {
     return {
       blog: {
