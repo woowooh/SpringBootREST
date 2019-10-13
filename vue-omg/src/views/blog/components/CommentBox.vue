@@ -6,7 +6,8 @@
                 :subfield="false"
                 :placeholder="'...'"
                 :fontSize="'14'" 
-                :toolbarsFlag=false                
+                :toolbarsFlag=false
+                v-model=comment.words                
                 >
                 </mavon-editor>  
             </div>  

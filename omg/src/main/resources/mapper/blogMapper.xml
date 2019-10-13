@@ -58,7 +58,7 @@
         WHERE
             <!--blog.id = comment.blog_id-->
         <!--AND-->
-            blog.id = #{id}
+            blog.id = #{blogId}
         AND
             blog.is_delete = 0
         <!--AND-->

@@ -2,7 +2,7 @@
 	<div id="container">
 		<blog-detail :blog="blog" />
 		<comment-list :comments="comments"/>
-		<comment-box @postComment="postComment" :comment="comment"/> 		
+		<comment-box @postComment="postComment" :comment="comment" /> 		
 	</div>
 </template>
 
@@ -15,10 +15,11 @@ import BlogDetail from "./components/BlogDetail"
 export default{
 	name:"blog-detail-page",
 	data(){
-		return{						
+		return{	
+			blogId: this.$route.params.id,	
 			blog: {},
-			comment: {
-				blogId: this.$route.params.id,
+			comment: {	
+				blogId: this.blogId,				
 				words: "",
 				wordsHTML: "", 
 			},			
@@ -27,20 +28,19 @@ export default{
 		}
 	},
 	created(){
-		var blogId = this.$route.params.id
+		var blogId = this.blogId		
 		this.getBlog(blogId)
 		this.getBlogComments(blogId)
 	},
 	methods: {
 		postComment: function() {  
-			console.log(this.comment)
+			var path = 'http://localhost:8082/addComment'		
+			axios.post(path, this.comment)
+				.then(res => {					
+					this.resetInput()
+				})					
 		},
-		// var path = 'http://localhost:8082/addComment'		
-		// 	axios.post(path, this.comment)
-		// 	  .then(res => {
-		// 	    console.log(res);
-		// 	  })
-		// },
+
 		getBlog: function(blogId) {				
 			var path = "http://localhost:8082/blog/" +  blogId
 			axios.get(path)
@@ -55,6 +55,10 @@ export default{
 				this.comments = res.data.data;  
 				console.log(this.comments)       
 			})
+		},
+		resetInput: function() {
+			this.comment.words = ""
+			this.comment.wordsHTML = ""
 		}
 	},
 	components: {

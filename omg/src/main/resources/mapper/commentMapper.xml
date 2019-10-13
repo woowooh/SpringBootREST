@@ -56,7 +56,7 @@
                 #{authorName},
                 #{wordsHTML},
                 #{userId},
-                #{commentId}
+                #{blogId}
             );
     </insert>
 
