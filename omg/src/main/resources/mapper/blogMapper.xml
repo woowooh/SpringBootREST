@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.omg.dao.BlogDAO">
+    <resultMap id="BlogBaseMap" type="com.omg.po.Blog" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="author_name" property="authorName" jdbcType="VARCHAR" />
+        <result column="content_HTML" property="contentHTML" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+    </resultMap>
+    <resultMap id="BlogResultMap" type="com.omg.po.Blog" extends="BlogBaseMap">
+        <collection property="comments"
+                    resultMap="com.omg.dao.CommentDAO.commentResultMap" columnPrefix="comment_">
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, title, content, author_name, content_HTML, user_id
+    </sql>
+
+    <select id="findAll" resultMap="BlogResultMap">
+        SELECT
+            blog.id,
+            blog.title,
+            blog.content,
+            blog.author_name,
+            blog.content_HTML,
+            blog.user_id
+            <!--comment.id AS comment_id,-->
+            <!--comment.words AS comment_words,-->
+            <!--comment.words_HTML AS comment_words_HTML,-->
+            <!--comment.author_name AS comment_author_name,-->
+            <!--comment.user_id AS comment_user_id,-->
+            <!--comment.blog_id AS comment_blog_id-->
+        FROM
+            `blog_t` blog
+        <!--LEFT JOIN `comment_t` comment ON blog.id = comment.blog_id-->
+    </select>
+
+    <select id="findById" resultMap="BlogResultMap" parameterType="Long">
+        SELECT
+            blog.id,
+            blog.title,
+            blog.content,
+            blog.author_name,
+            blog.content_HTML,
+            blog.user_id
+            <!--comment.id AS comment_id,-->
+            <!--comment.words AS comment_words,-->
+            <!--comment.words_HTML AS comment_words_HTML,-->
+            <!--comment.author_name AS comment_author_name,-->
+            <!--comment.user_id AS comment_user_id,-->
+            <!--comment.blog_id AS comment_blog_id-->
+        FROM
+            <!--`comment_t` comment,-->
+            `blog_t` blog
+        WHERE
+            <!--blog.id = comment.blog_id-->
+        <!--AND-->
+            blog.id = #{blogId}
+        AND
+            blog.is_delete = 0
+        <!--AND-->
+            <!--comment.is_delete = 0-->
+    </select>
+
+    <insert id="addOne" parameterType="com.omg.po.Blog">
+        INSERT into blog_t
+            (
+                title,
+                content,
+                author_name,
+                content_HTML,
+                user_id,
+                id
+            )
+        values
+            (
+                #{title},
+                #{content},
+                #{authorName},
+                #{contentHTML},
+                #{userId},
+                #{blogId}
+            );
+    </insert>
+
+    <update id="updateOne" parameterType="com.omg.po.Blog">
+        UPDATE
+            blog_t
+        SET
+            title = #{title},
+            content = #{content},
+            content_HTML = #{contentHTML}
+        WHERE
+            id = #{blogId} and is_delete = 0;
+    </update>
+
+    <update id="deleteById" parameterType="Long">
+        UPDATE
+            blog_t
+        SET
+            is_delete = 1
+        WHERE
+            id = #{blogId} and is_delete = 0;
+    </update>
+</mapper>
