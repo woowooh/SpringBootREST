@@ -3,7 +3,6 @@ package com.omg.controller;
 import com.omg.dto.Result;
 import com.omg.po.Blog;
 import com.omg.service.BlogService;
-import com.omg.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
