@@ -82,7 +82,7 @@
                 #{authorName},
                 #{contentHTML},
                 #{userId},
-                #{blogId}
+                #{id}
             );
     </insert>
 
