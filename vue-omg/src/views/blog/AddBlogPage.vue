@@ -55,9 +55,9 @@ export default {
       var path = 'http://localhost:8082/addBlog'
       this.getInput()
       axios.post(path, this.blog)
-        .then(res => {
-          console.log(res)
+        .then(res => {          
           this.resetInput()
+          this.$router.push({path: "/"})
         })        
     },
     addComment: function() {
