@@ -1,7 +1,8 @@
 <template>
     <div id="single-blog">
         <h1>{{ blog.title }}</h1>
-        <article>{{ blog.content }}</article>
+        <div class="blog-content" v-html="blog.contentHTML">            
+        </div>
         <p>作者: {{ blog.authorName }}</p>
     </div>
 </template>

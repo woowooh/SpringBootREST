@@ -39,6 +39,7 @@ export default {
       blog: {
         title: "",
         content: "",
+        contentHTML: "",
         categories: [],
         authorName: "",        
       },
@@ -52,15 +53,26 @@ export default {
   methods: {
     submit: function() {    
       var path = 'http://localhost:8082/addBlog'
-      // axios.post(path, this.blog)
-      //   .then(res => {
-      //     console.log(res);
-      //   })
+      this.getInput()
+      axios.post(path, this.blog)
+        .then(res => {
+          console.log(res)
+          this.resetInput()
+        })        
     },
     addComment: function() {
       console.log("workd")
       this.editComment = !this.editComment
     },
+    getInput: function() {
+      var refEdit = this.$refs.editor;
+      this.blog.content = refEdit.d_value
+      this.blog.contentHTML = refEdit.d_render
+    },
+    resetInput: function() {
+			this.blog.content = ""
+			this.blog.contentHTML = ""
+		}
   },
   components: {
     mavonEditor,
