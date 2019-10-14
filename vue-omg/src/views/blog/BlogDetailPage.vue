@@ -15,11 +15,11 @@ import BlogDetail from "./components/BlogDetail"
 export default{
 	name:"blog-detail-page",
 	data(){
-		return{	
-			blogId: this.$route.params.id,	
-			blog: {},
+		return{				
+			blog: {				
+			},
 			comment: {	
-				blogId: this.blogId,				
+				blogId: this.$route.params.id,
 				words: "",
 				wordsHTML: "", 
 			},			
@@ -27,7 +27,7 @@ export default{
 		}
 	},
 	created(){
-		var blogId = this.blogId		
+		var blogId = this.$route.params.id
 		this.getBlog(blogId)
 		this.getBlogComments(blogId)
 	},
@@ -35,8 +35,9 @@ export default{
 		postComment: function() {  
 			var path = 'http://localhost:8082/addComment'		
 			axios.post(path, this.comment)
-				.then(res => {					
-					this.resetInput()
+				.then(res => {
+					this.getBlogComments(this.blog.id)					
+					this.resetInput()					
 				})					
 		},
 
