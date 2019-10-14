@@ -1,5 +1,8 @@
 <template>
-  <blog-list :blogs="blogs" />
+  <div class="blogs-container">
+    <button class="btn btn-outline-dark btn-sm pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
+    <blog-list :blogs="blogs" />
+  </div>
 </template>
 
 <script>
@@ -24,8 +27,19 @@ export default {
       this.blogs = res.data;        
     })
   },
+  methods: {
+    jumpBlogAdd: function() {
+      this.$router.push({path: "/add"})
+    }
+  },
   components: {
     BlogList,
   }
 }
 </script>
+<style scoped>
+button {
+	color: green;
+  margin-right: 40px;
+}
+</style>
