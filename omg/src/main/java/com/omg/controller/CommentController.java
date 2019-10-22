@@ -16,7 +16,7 @@ public class CommentController {
 
     @PostMapping("/addComment")
     public Result addComment(@RequestBody Comment comment) {
-        CommentService.addComment(comment);
+        CommentService.save(comment);
         System.out.println(comment);
         return Result.successResult();
     }
@@ -29,19 +29,21 @@ public class CommentController {
 
     @GetMapping("/Comment/{CommentId}")
     public Result getComment(@PathVariable("CommentId")Long CommentId) {
-        Comment b = CommentService.findComment(CommentId);
+        Comment b = CommentService.findById(CommentId);
         return Result.successResult(b);
     }
 
     @GetMapping("/Comments/{BlogId}")
     public Result getComments(@PathVariable("BlogId")Long BlogId) {
-        List<Comment> comments = CommentService.getComments(BlogId);
+        List<Comment> comments = CommentService.listByBlogId(BlogId);
         return Result.successResult(comments);
     }
 
     @GetMapping("/deleteComment/{commentId}")
     public Result deleteComment(@PathVariable("commentId")Long commentId) {
-        CommentService.deleteComment(commentId);
+        System.out.println("wwwwwwwww");
+        System.out.println(CommentService.deleteById(commentId));
+
         return Result.successResult();
     }
 
