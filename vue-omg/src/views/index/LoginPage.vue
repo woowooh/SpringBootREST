@@ -2,7 +2,7 @@
   <div class="container">
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <label for="inputEmail" class="sr-only">Account</label>
         <input type="text" v-model="loginForm.account" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" v-model="loginForm.password" id="inputPassword" class="form-control" placeholder="Password">
@@ -15,7 +15,6 @@
         <button class="btn btn-lg btn-primary btn-block" @click.prevent="regist" type="submit">Register</button>        
     </form>
     <div class="alert alert-warning hide" style="display: none;" v-html="message">
-      
     </div>
   </div>
 </template>
@@ -93,7 +92,9 @@ export default {
     padding-bottom: 40px;
     background-color: #eee;
   }
-  
+  .container {
+    margin-top: 90px;
+  }
   .form-signin {
     max-width: 330px;
     padding: 15px;

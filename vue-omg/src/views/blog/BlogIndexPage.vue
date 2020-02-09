@@ -42,4 +42,7 @@ export default {
     color: green;
     margin-right: 40px;
   }
+  #app {
+    margin-top: -60px;
+  }
 </style>

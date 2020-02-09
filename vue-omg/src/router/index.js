@@ -7,17 +7,15 @@ export const routes = [
   {
     path: '/',
     name: 'LoginPage',
-    component: LoginPage
+    component: LoginPage,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/blogs',
     name: 'ShowBlogs',
     component: BlogIndexPage
-  },
-  {
-    path: '/blog',
-    name: '博客首页',
-    component: BlogIndexPage,          
   },
   {
     path: '/add',
