@@ -43,7 +43,7 @@ export default {
 		}		
 	},
 	watch:{
-   		comments(newValue,oldValue) {
+   		comments(newValue, oldValue) {
     		this.filteredComments = newValue
 		},
 	},
