@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.sql.Timestamp;
+
 
 @Data
 @NoArgsConstructor
@@ -18,4 +20,8 @@ public class Comment {
     private String authorName;
     private Long userId;
     private Long blogId;
+    @TableField(value = "is_delete")
+    private Short deleted;
+    private Timestamp create_time;
+    private Timestamp update_time;
 }

@@ -11,7 +11,8 @@
             <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" @click.prevent="submit" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" @click.prevent="login" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" @click.prevent="regist" type="submit">Register</button>        
     </form>
     <div class="alert alert-warning hide" style="display: none;" v-html="message">
       
@@ -34,7 +35,22 @@ export default {
     }
   },
   methods: {
-    submit: function() {
+    regist: function() {
+      if (!this.validInput()) {
+        return
+      }
+      var path = 'http://localhost:8082/regist'
+      axios.post(path, this.loginForm)
+        .then(res => {          
+          console.log(res.data)
+          if (res.data.data == true) {
+            this.flashMessage("<strong>Register success ~</strong>")
+          } else {
+            this.flashMessage("<strong>Verify user failed ~</strong>")
+          }
+        }) 
+    },
+    login: function() {
       if (!this.validInput()) {
         return
       }

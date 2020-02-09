@@ -7,11 +7,11 @@ import java.util.List;
 public interface IBaseService<T> {
     T findById(Long id);
 
-    void save(T obj);
+    int save(T obj);
 
     int deleteById(Long id);
 
-    void updateById(T obj);
+    int updateById(T obj);
 
     List<T> getAll();
 

@@ -8,9 +8,14 @@ import java.util.List;
 
 @Service
 public class CommentService extends BaseService<Comment> {
+    private static String BLOG_ID = "blog_id";
+    private static String IS_DELETE = "is_delete";
+    private static Short NOT_DELETE = 0;
+
     public List<Comment> listByBlogId(Long blogId) {
-        QueryWrapper condition = new QueryWrapper<Comment>();
-        condition.eq("blog_id", blogId);
+        QueryWrapper<Comment> condition = createCondition();
+        condition.eq(BLOG_ID, blogId)
+                 .eq(IS_DELETE, NOT_DELETE);
         Page page = new Page(1, 20);
         List comments = listPageByCondition(page, condition);
         return comments;

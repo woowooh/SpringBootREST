@@ -21,3 +21,14 @@ CREATE TABLE `comment_t` (
   `content_HTML` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE `user_t` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `account` text,
+  `password` varchar(11) DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_delete` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 public abstract class BaseService<T> implements IBaseService<T> {
     @Autowired
     BaseMapper<T> mapper;
@@ -14,16 +15,16 @@ public abstract class BaseService<T> implements IBaseService<T> {
         return mapper.selectById(id);
     }
 
-    public void save(T obj) {
-        mapper.insert(obj);
+    public int save(T obj) {
+        return mapper.insert(obj);
     }
 
     public int deleteById(Long id) {
         return mapper.deleteById(id);
     }
 
-    public void updateById(T o) {
-        mapper.updateById(o);
+    public int updateById(T o) {
+        return mapper.updateById(o);
     }
 
     public List<T> getAll() {
@@ -36,5 +37,13 @@ public abstract class BaseService<T> implements IBaseService<T> {
 
     public List<T> listByCondition(QueryWrapper condition) {
         return mapper.selectList(condition);
+    }
+
+    public QueryWrapper<T> createCondition() {
+        return new QueryWrapper<>();
+    }
+
+    public T selectOne(QueryWrapper<T> condition) {
+        return mapper.selectOne(condition);
     }
 }

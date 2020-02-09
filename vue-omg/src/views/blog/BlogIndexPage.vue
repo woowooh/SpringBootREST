@@ -1,6 +1,6 @@
 <template>
   <div class="blogs-container">
-    <button class="btn btn-outline-dark btn-sm pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
+    <button class="btn btn-outline-dark pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
     <blog-list :blogs="blogs" />
   </div>
 </template>
@@ -38,8 +38,8 @@ export default {
 }
 </script>
 <style scoped>
-button {
-	color: green;
-  margin-right: 40px;
-}
+  button {
+    color: green;
+    margin-right: 40px;
+  }
 </style>

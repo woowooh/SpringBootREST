@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
@@ -22,4 +22,8 @@ public class Blog {
     private Long userId;
     @TableField(exist = false)
     private List<Comment> comments;
+    @TableField(value = "is_delete")
+    private Short deleted;
+    private Timestamp create_time;
+    private Timestamp update_time;
 }
