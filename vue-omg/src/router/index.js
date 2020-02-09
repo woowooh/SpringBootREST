@@ -1,17 +1,21 @@
 import BlogIndexPage from '@/views/blog/BlogIndexPage.vue'
 import AddBlogPage from '@/views/blog/AddBlogPage.vue'
 import BlogDetailPage from '@/views/blog/BlogDetailPage.vue'  
+import LoginPage from '@/views/index/LoginPage.vue'  
 
 export const routes = [
   {
     path: '/',
-    name: 'ShowBlogs',
-    component: BlogIndexPage
+    name: 'LoginPage',
+    component: LoginPage,
+    meta: {
+      keepAlive: true
+    }
   },
   {
-    path: '/blog',
-    name: '博客首页',
-    component: BlogIndexPage,          
+    path: '/blogs',
+    name: 'ShowBlogs',
+    component: BlogIndexPage
   },
   {
     path: '/add',

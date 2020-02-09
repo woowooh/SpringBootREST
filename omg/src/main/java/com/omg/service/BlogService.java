@@ -1,36 +1,29 @@
 package com.omg.service;
 
-import com.omg.dao.BlogDAO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.omg.po.Blog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
+
 @Service
-public class BlogService {
+public class BlogService extends BaseService<Blog> {
+    private static String IS_DELETE = "is_delete";
+    private static Short NOT_DELETE = 0;
+
     @Autowired
-    BlogDAO blogDAO;
+    private CommentService commentService;
 
-    public List<Blog> getBlogs(){
-        List<Blog> blogs = blogDAO.findAll();
+    public List<Blog> getBlogsAndComments(){
+        QueryWrapper<Blog> condition = createCondition();
+        condition.eq(IS_DELETE, NOT_DELETE);
+        List<Blog> blogs = mapper.selectList(condition);
+        blogs.forEach(
+            blog -> blog.setComments(
+                commentService.listByBlogId(blog.getId())
+            )
+        );
         return blogs;
-    }
-
-    public void addBlog(Blog blog){
-        blogDAO.addOne(blog);
-    }
-
-    public void updateBlog(Blog blog){
-        blogDAO.updateOne(blog);
-    }
-
-    public Blog findBlog(long blog_id) {
-        Blog b = blogDAO.findById(blog_id);
-        return b;
-    }
-
-    public void deleteBlog(long blog_id) {
-        blogDAO.deleteById(blog_id);
     }
 }

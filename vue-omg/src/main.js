@@ -5,6 +5,9 @@ import {routes} from './router'
 import VueRouter from 'vue-router'
 import mavonEditor from 'mavon-editor'
 import 'element-ui/lib/theme-chalk/index.css'
+import $ from 'jquery'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min'
 
 Vue.use(VueRouter)
 Vue.use(mavonEditor)

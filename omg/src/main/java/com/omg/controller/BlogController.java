@@ -16,30 +16,30 @@ public class BlogController {
 
     @GetMapping("/blogList")
     public List<Blog> blogList() {
-        return blogService.getBlogs();
+        return blogService.getAll();
     }
 
     @PostMapping("/addBlog")
     public Result addBlog(@RequestBody Blog blog) {
-        blogService.addBlog(blog);
+        blogService.save(blog);
         return Result.successResult();
     }
 
     @PostMapping("/updateBlog")
     public Result updateBlog(@RequestBody Blog blog) {
-        blogService.updateBlog(blog);
+        blogService.updateById(blog);
         return Result.successResult();
     }
 
     @GetMapping("/blog/{blogId}")
     public Result getBlog(@PathVariable("blogId")Long blogId) {
-        Blog b = blogService.findBlog(blogId);
+        Blog b = blogService.findById(blogId);
         return Result.successResult(b);
     }
 
     @GetMapping("/deleteBlog/{blogId}")
     public Result deleteBlog(@PathVariable("blogId")Long blogId) {
-        blogService.deleteBlog(blogId);
+        blogService.deleteById(blogId);
         return Result.successResult();
     }
 }
