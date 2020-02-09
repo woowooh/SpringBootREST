@@ -11,6 +11,12 @@ public class Result {
         this.data = data;
     }
 
+    public Result(Object data) {
+        this.code = 200;
+        this.msg = "msg";
+        this.data = data;
+    }
+
     public static Result successResult() {
         return new Result(200, "OK", null);
     }
