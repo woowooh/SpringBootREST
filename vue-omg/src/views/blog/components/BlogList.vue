@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="background-color: #E8E5E4">
+  <div class="blogListContainer" style="background-color: #E8E5E4">
     <div class="row">
       <div class="blogs" v-for="(blog, index) in blogs" :key=index>
           <div class="card text" style="width: 15rem;">

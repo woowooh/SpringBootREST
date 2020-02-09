@@ -1,7 +1,9 @@
 <template>
-  <div class="blogs-container">
+  <div class="container">
     <button class="btn btn-outline-dark pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
-    <blog-list :blogs="blogs" />
+    <div class="page-header">
+      <blog-list :blogs="blogs" />
+    </div>
   </div>
 </template>
 
@@ -42,7 +44,35 @@ export default {
     color: green;
     margin-right: 40px;
   }
-  #app {
-    margin-top: -60px;
-  }
+  /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
 </style>
