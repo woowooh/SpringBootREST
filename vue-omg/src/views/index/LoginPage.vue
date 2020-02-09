@@ -42,6 +42,11 @@ export default {
       axios.post(path, this.loginForm)
         .then(res => {          
           console.log(res.data)
+          if (res.data.data == true) {
+            this.$router.push({path: "/blogs"})
+          } else {
+            this.flashMessage("<strong>Verify user failed</strong>")
+          }
         }) 
     },
     validInput: function() {
