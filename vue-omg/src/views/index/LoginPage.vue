@@ -13,6 +13,9 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" @click.prevent="submit" type="submit">Sign in</button>
     </form>
+    <div class="alert alert-warning hide" style="display: none;" v-html="message">
+      
+    </div>
   </div>
 </template>
 
@@ -26,7 +29,8 @@ export default {
       loginForm: {
         account: "",
         password: "",
-      }
+      },
+      message: "",
     }
   },
   methods: {
@@ -34,26 +38,29 @@ export default {
       if (!this.validInput()) {
         return
       }
-      var path = 'http://localhost:8082/mock'
-      this.validInput()
+      var path = 'http://localhost:8082/login'
       axios.post(path, this.loginForm)
         .then(res => {          
           console.log(res.data)
         }) 
     },
     validInput: function() {
-      if (this.loginForm.account.trim() == "") {
-        this.flashMessage("Account can not be empty")
+      if (this.loginForm.account.trim() == "") {        
+        this.flashMessage("<strong>Account can not be empty</strong>")
         return false
       }
       if (this.loginForm.password.trim() == "") {
-        this.flashMessage("password can not be empty")
+        this.flashMessage("<strong>password can not be empty</strong>")
         return false
       }
       return true
     },
     flashMessage: function(message) {
-      console.log(message)
+      this.message = message
+      $('.alert').show()
+      window.setTimeout(function() {
+        $('.alert').hide()
+      }, 1500);
     }
   }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BlogService extends BaseService<Blog>{
+public class BlogService extends BaseService<Blog> {
     @Autowired
     private CommentService commentService;
 
