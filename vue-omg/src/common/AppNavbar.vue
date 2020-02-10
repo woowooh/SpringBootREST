@@ -14,8 +14,8 @@
                 <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/blogs">Home</a></li>
-                    <li><a href="#about">Chat room</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#chat">Chat room</a></li>
+                    <li><a href="/manage">Manage</a></li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">

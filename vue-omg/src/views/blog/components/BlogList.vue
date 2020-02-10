@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-        <div class="col-xs-6 col-sm-3" v-for="(blog, index) in blogs" :key=index>
+        <div class="col-xs-6 col-sm-3" v-for="(blog, index) in blogs" :key=index >
           <div class="thumbnail">
                 <router-link v-bind:to="'/blog/' + blog.id" >
                 <img :src=blog.imgPath alt="Card image cap" style="height: 200px; width: 100%; display: block;">
@@ -31,10 +31,20 @@ export default {
         return {}
     },
     props: {
-        blogs: {
-
-        },
-    }
+        blogs: [],
+    },
+    created(){    
+        var path = "http://localhost:8082/blogList"
+        axios.get(path)
+        .then(res => {
+        let data = res.data;      
+        for (let i = 0; i < data.length; i++) {
+            let j = i % 12
+            data[i].imgPath = `./../static/imgs/${j}.jpg`;
+        }  
+        this.blogs = res.data;        
+        })
+    },
 }
 </script>
 <style scoped>

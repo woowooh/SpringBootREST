@@ -2,6 +2,7 @@ import BlogIndexPage from '@/views/blog/BlogIndexPage.vue'
 import AddBlogPage from '@/views/blog/AddBlogPage.vue'
 import BlogDetailPage from '@/views/blog/BlogDetailPage.vue'  
 import LoginPage from '@/views/index/LoginPage.vue'  
+import ManagePage from '@/views/user/ManagePage.vue'  
 
 export const routes = [
   {
@@ -26,5 +27,10 @@ export const routes = [
     path: '/blog/:id',
     name: '博客细节',
     component: BlogDetailPage,          
+  },
+  {
+    path: '/manage',
+    name: '用户管理',
+    component: ManagePage,          
   }
 ]
