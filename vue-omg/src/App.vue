@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div id="index">
       <app-navbar v-if="!$route.meta.keepAlive" id="appHeader"/>
       <router-view v-on:public_header="public_header" v-on:public_footer="public_footer"></router-view>
       <app-footer v-if="!$route.meta.keepAlive" id="appFooter"/>
-    </div>
   </div>
 </template>
 

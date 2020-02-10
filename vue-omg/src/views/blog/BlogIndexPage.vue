@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <button class="btn btn-outline-dark pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
+    <div class="page-header" style="padding-top: 30px">
+      <button class="btn btn-outline-dark pull-right" v-on:click="jumpBlogAdd">Add Blog</button>						
+    </div>
     <div class="page-header">
       <blog-list :blogs="blogs" />
     </div>
@@ -39,7 +41,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
   button {
     color: green;
     margin-right: 40px;
@@ -63,14 +65,6 @@ body {
   background-color: #f5f5f5;
 }
 
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-.container {
-  padding: 60px 15px 0;
-}
 .container .text-muted {
   margin: 20px 0;
 }

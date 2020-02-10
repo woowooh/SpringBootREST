@@ -1,25 +1,22 @@
 <template>
-  <div class="blogListContainer" style="background-color: #E8E5E4">
-    <div class="row">
-      <div class="blogs" v-for="(blog, index) in blogs" :key=index>
-          <div class="card text" style="width: 15rem;">
-              <img class="card-img-top" :src=blog.imgPath alt="Card image cap" height="">
-              <div class="card-body">
-                <h4 class="card-title">
+  <div class="row">
+        <div class="col-xs-6 col-sm-3" v-for="(blog, index) in blogs" :key=index>
+          <div class="thumbnail">
+              <img :src=blog.imgPath alt="Card image cap" style="height: 200px; width: 100%; display: block;">
+              <div class="caption">
+                <h3 >
                     <router-link v-bind:to="'/blog/' + blog.id" class="blog-title">
                         {{ blog.title }}
                     </router-link>
-                </h4>
-                <p class="card-text">{{ blog.content }}</p>
-                <small class="text-muted">Published by {{ blog.authorName }} 3 mins ago</small>
-                <router-link v-bind:to="'/blog/' + blog.id" class="btn btn-outline-dark btn-sm pull-right">
-                Read More 
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>                    
+                </h3>
+                <p >{{ blog.content }}</p>
+                <small >Published by {{ blog.authorName }} 3 mins ago</small>
+                <router-link v-bind:to="'/blog/' + blog.id">
+                <p>Read More </p>
                 </router-link>
               </div>
           </div>
         </div>
-    </div>
   </div>
 </template>
 
