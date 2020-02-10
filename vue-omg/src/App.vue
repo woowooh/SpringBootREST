@@ -6,7 +6,6 @@
   </div>
 </template>
 
-
 <script>
 import AppNavbar from "./common/AppNavbar"
 import AppFooter from "./common/AppFooter"
