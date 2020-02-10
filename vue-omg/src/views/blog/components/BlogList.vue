@@ -2,8 +2,10 @@
   <div class="row">
         <div class="col-xs-6 col-sm-3" v-for="(blog, index) in blogs" :key=index>
           <div class="thumbnail">
-              <img :src=blog.imgPath alt="Card image cap" style="height: 200px; width: 100%; display: block;">
-              <div class="caption">
+                <router-link v-bind:to="'/blog/' + blog.id" >
+                <img :src=blog.imgPath alt="Card image cap" style="height: 200px; width: 100%; display: block;">
+                </router-link>
+                <div class="caption">
                 <h3 >
                     <router-link v-bind:to="'/blog/' + blog.id" class="blog-title">
                         {{ blog.title }}
