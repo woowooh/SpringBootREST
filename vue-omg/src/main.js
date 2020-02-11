@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App'
 import {routes} from './router'
+import ElementUI from 'element-ui';
 import VueRouter from 'vue-router'
 import mavonEditor from 'mavon-editor'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -9,6 +10,7 @@ import $ from 'jquery'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 
+Vue.use(ElementUI);
 Vue.use(VueRouter)
 Vue.use(mavonEditor)
 const router = new VueRouter({
