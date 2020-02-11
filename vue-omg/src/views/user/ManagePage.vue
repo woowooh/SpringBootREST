@@ -29,7 +29,7 @@
                 <td>
                     <el-button type="text" size="medium" class="btn btn-default enable" >启用</el-button>
                     <el-button type="text" size="medium" class="btn btn-default forbidden" >禁用</el-button>
-                    <el-button type="text" size="medium" class="btn btn-default" @click="dialogFormVisible=true">过期</el-button>
+                    <el-button type="text" size="medium" class="btn btn-default normal" @click="dialogFormVisible=true">过期</el-button>
                 </td>
             </tr>
             </tbody>
@@ -123,6 +123,13 @@ export default {
 }
 .forbidden:hover{
     color: #F56C6C;
+    border-color: transparent;
+}
+.normal {
+    color: #2c3e50;
+}
+.normal:hover{
+    color: #909399;
     border-color: transparent;
 }
 .middle {
