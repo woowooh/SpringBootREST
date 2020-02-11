@@ -25,7 +25,7 @@
                 <td>{{ user.account }}</td>
                 <td>{{ user.createTime }}</td>
                 <td>{{ user.updateTime }}</td>
-                <td><button>disable</button></td>
+                <td><button class="btn btn-default" @click.prevent="diasble">disable</button></td>
             </tr>
             </tbody>
         </table>
@@ -45,8 +45,16 @@ export default {
             users: [],
         }
     },
+    methods: {
+        diasble: function() {
+            var path = "http://localhost:8082/user/disable"
+            axios.post(path, {}).then(res => {          
+                
+            }) 
+        }
+    },
     created(){    
-        var path = "http://localhost:8082/userList"
+        var path = "http://localhost:8082/user/userList"
         axios.get(path).then(res => {
             this.users = res.data.data;        
         })

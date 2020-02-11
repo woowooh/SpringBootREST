@@ -11,6 +11,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
@@ -31,5 +32,17 @@ public class UserController {
     public Result userList() {
         List<User> users = userService.userList();
         return new Result(users);
+    }
+
+    @PostMapping("/disable")
+    public Result disable(@RequestBody User user) {
+        int code = 0;
+        String message = "ok";
+        int i = userService.disableUser(user);
+        if (i != 1) {
+           code = 1;
+           message = "Failed operation";
+        }
+        return new Result(code, message);
     }
 }

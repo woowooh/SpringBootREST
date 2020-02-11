@@ -38,7 +38,7 @@ export default {
       if (!this.validInput()) {
         return
       }
-      var path = 'http://localhost:8082/regist'
+      var path = 'http://localhost:8082/user/regist'
       axios.post(path, this.loginForm)
         .then(res => {          
           console.log(res.data)
@@ -53,7 +53,7 @@ export default {
       if (!this.validInput()) {
         return
       }
-      var path = 'http://localhost:8082/login'
+      var path = 'http://localhost:8082/user/login'
       axios.post(path, this.loginForm)
         .then(res => {          
           console.log(res.data)

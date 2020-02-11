@@ -3,7 +3,6 @@ package com.omg.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.omg.po.User;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -51,5 +50,10 @@ public class UserService extends BaseService<User> {
         QueryWrapper<User> condition = createCondition();
         condition.eq(IS_DELETE, NOT_DELETE);
         return listByCondition(condition);
+    }
+
+    public int disableUser(User user) {
+        User u = findUser(user);
+        return updateById(u);
     }
 }
