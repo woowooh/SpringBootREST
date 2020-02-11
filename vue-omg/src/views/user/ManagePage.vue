@@ -13,17 +13,19 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
+                <th>Account</th>
+                <th>Add Time</th>
+                <th>Last modify</th>
+                <th>Operation</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(blog, index) in blogs" :key=index >
+            <tr v-for="(user, index) in users" :key=index >
                 <th scope="row">{{ index + 1}}</th>
-                <td>{{ blog.title }}</td>
-                <td>{{ blog.content }}</td>
-                <td>{{ blog.authorName }}</td>
+                <td>{{ user.account }}</td>
+                <td>{{ user.createTime }}</td>
+                <td>{{ user.updateTime }}</td>
+                <td><button>disable</button></td>
             </tr>
             </tbody>
         </table>
@@ -40,19 +42,13 @@ export default {
     name: "manage-page",
     data(){
         return {
-            blogs: [],
+            users: [],
         }
     },
     created(){    
-        var path = "http://localhost:8082/blogList"
-        axios.get(path)
-        .then(res => {
-        let data = res.data;      
-        for (let i = 0; i < data.length; i++) {
-            let j = i % 12
-            data[i].imgPath = `./../static/imgs/${j}.jpg`;
-        }  
-        this.blogs = res.data;        
+        var path = "http://localhost:8082/userList"
+        axios.get(path).then(res => {
+            this.users = res.data.data;        
         })
     },
 }

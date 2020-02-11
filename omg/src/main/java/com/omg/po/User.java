@@ -1,18 +1,16 @@
 package com.omg.po;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import java.sql.Timestamp;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 
 @Data
 @TableName("user_t")
-public class User {
+@Accessors(chain= true)
+@EqualsAndHashCode(callSuper=true)
+public class User extends BasePO {
     private String password;
     private String account;
-    @TableField(value = "is_delete")
-    private Short deleted;
-    private Timestamp create_time;
-    private Timestamp update_time;
 }

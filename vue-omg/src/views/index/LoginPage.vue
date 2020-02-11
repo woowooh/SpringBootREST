@@ -14,7 +14,7 @@
         <button class="btn btn-lg btn-primary btn-block" @click.prevent="login" type="submit">Sign in</button>
         <button class="btn btn-lg btn-primary btn-block" @click.prevent="regist" type="submit">Register</button>        
     </form>
-    <div class="alert alert-warning hide" style="display: none;" v-html="message">
+    <div class="alert alert-warning" style="display: none;" v-html="message">
     </div>
   </div>
 </template>

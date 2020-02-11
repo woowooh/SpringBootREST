@@ -4,15 +4,18 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import java.sql.Timestamp;
+import lombok.experimental.Accessors;
 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain= true)
 @TableName("comment_t")
-public class Comment {
+@EqualsAndHashCode(callSuper=true)
+public class Comment extends BasePO {
     private Long id;
     private String words;
     @TableField(value = "words_HTML")
@@ -20,8 +23,4 @@ public class Comment {
     private String authorName;
     private Long userId;
     private Long blogId;
-    @TableField(value = "is_delete")
-    private Short deleted;
-    private Timestamp create_time;
-    private Timestamp update_time;
 }

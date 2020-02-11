@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.omg.po.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserService extends BaseService<User> {
@@ -43,5 +45,11 @@ public class UserService extends BaseService<User> {
                 .eq(IS_DELETE, NOT_DELETE);
         User userInfo = selectOne(condition);
         return userInfo;
+    }
+
+    public List<User> userList() {
+        QueryWrapper<User> condition = createCondition();
+        condition.eq(IS_DELETE, NOT_DELETE);
+        return listByCondition(condition);
     }
 }
