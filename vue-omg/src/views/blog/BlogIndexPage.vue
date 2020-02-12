@@ -28,7 +28,9 @@ export default {
         let j = i % 12
         data[i].imgPath = `./../static/imgs/${j}.jpg`;
       }  
-      this.blogs = res.data;        
+      console.log(data)
+      console.log(typeof(data))
+      this.blogs = data;        
     })
   },
   methods: {

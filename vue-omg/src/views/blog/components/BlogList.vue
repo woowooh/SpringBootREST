@@ -31,19 +31,9 @@ export default {
         return {}
     },
     props: {
-        blogs: [],
-    },
-    created(){    
-        var path = "http://localhost:8082/blogList"
-        axios.get(path)
-        .then(res => {
-        let data = res.data;      
-        for (let i = 0; i < data.length; i++) {
-            let j = i % 12
-            data[i].imgPath = `./../static/imgs/${j}.jpg`;
-        }  
-        this.blogs = res.data;        
-        })
+        blogs: {
+            type: Array,
+        }
     },
 }
 </script>

@@ -40,6 +40,7 @@ public class UserService extends BaseService<User> {
 
     public User findUser(User u ) {
         QueryWrapper<User> condition = createCondition();
+        System.out.println(u);
         condition.eq(COLUMN_ACCOUNT, u.getAccount())
                 .eq(IS_DELETE, NOT_DELETE);
         User userInfo = selectOne(condition);
@@ -53,7 +54,9 @@ public class UserService extends BaseService<User> {
     }
 
     public int disableUser(User user) {
-        User u = findUser(user);
+        User u = findById(user.getId());
+        u.setExpireTime(user.getExpireTime());
+        u.setUpdateTime(null);
         return updateById(u);
     }
 }

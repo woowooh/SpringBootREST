@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row">    
     <div class="col-sm-8 col-sm-offset-2 blog-main">
         <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -7,7 +7,7 @@
         <div class="panel-body">
             <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
         </div>
-        <!-- Table -->
+        <!-- Table -->        
         <table class="table">
             <thead>
             <tr>
@@ -25,9 +25,19 @@
                 <td class="middle">{{ user.account }}</td>
                 <td class="middle">{{ user.createTime }}</td>
                 <td class="middle">{{ user.updateTime }}</td>
-                <td class="middle">{{ user.expireTime}}</td>
+                <td class="middle">  
+                        <span class="demonstration"></span>
+                            <el-date-picker
+                            v-model="user.expireTime"
+                            type="datetime"
+                            placeholder="选择日期时间"
+                            align="right"
+                            value-format="yyyy-MM-dd hh:mm:ss"
+                            :picker-options="pickerOptions">
+                            </el-date-picker>
+                </td>
                 <td>
-                    <el-button type="text" size="medium" class="btn btn-default enable" >启用</el-button>
+                    <el-button type="text" size="medium" class="btn btn-default enable" @click="enable(index)" >保存</el-button>
                     <el-button type="text" size="medium" class="btn btn-default forbidden" >禁用</el-button>
                     <el-button type="text" size="medium" class="btn btn-default normal" @click="dialogFormVisible=true">过期</el-button>
                 </td>
@@ -35,18 +45,6 @@
             </tbody>
         </table>
         </div>
-        <el-dialog title="过期时间" :visible.sync="dialogFormVisible" width="30%">
-             <div class="block">
-                <span class="demonstration">选择过期时间</span>
-                <el-date-picker
-                v-model="expireTime"
-                type="datetime"
-                placeholder="选择日期时间"
-                align="right"
-                :picker-options="pickerOptions">
-                </el-date-picker>
-            </div>
-        </el-dialog>
         </div>
     </div>
 </template>
@@ -86,6 +84,7 @@ export default {
           }]
         },
         expireTime: '',
+        message: "",
       }
     },
     methods: {
@@ -97,7 +96,23 @@ export default {
             // axios.post(path, {}).then(res => {          
                 
             // }) 
-        }
+        },
+        flashMessage: function(message) {
+            this.$message({
+                message: message,
+                center: true
+            });
+        },
+        enable: function(index) {
+            var user = this.users[index]
+            var path = "http://localhost:8082/user/disable"
+            console.log(user)
+            axios.post(path, user).then(res => {          
+                if (res.data.code == 0) {
+                    this.flashMessage("Save success")
+                }
+            }) 
+        },
     },
     created() {    
         var path = "http://localhost:8082/user/userList"

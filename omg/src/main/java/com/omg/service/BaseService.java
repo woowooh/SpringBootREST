@@ -46,4 +46,9 @@ public abstract class BaseService<T> implements IBaseService<T> {
     public T selectOne(QueryWrapper<T> condition) {
         return mapper.selectOne(condition);
     }
+
+    public List<T> listColumnByCondition(String[] cols, QueryWrapper<T> condition) {
+        condition.select(cols);
+        return listByCondition(condition);
+    }
 }

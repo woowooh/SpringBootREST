@@ -42,6 +42,7 @@ public class UserController {
         if (i != 1) {
            code = 1;
            message = "Failed operation";
+            System.out.println("wwwwwwwwwwwwwwwwwwwwwwww");
         }
         return new Result(code, message);
     }

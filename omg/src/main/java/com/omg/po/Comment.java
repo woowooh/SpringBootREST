@@ -16,7 +16,6 @@ import lombok.experimental.Accessors;
 @TableName("comment_t")
 @EqualsAndHashCode(callSuper=true)
 public class Comment extends BasePO {
-    private Long id;
     private String words;
     @TableField(value = "words_HTML")
     private String wordsHTML;

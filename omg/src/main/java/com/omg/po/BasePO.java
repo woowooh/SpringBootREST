@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Accessors(chain= true)
 public class BasePO {
+    private Long id;
     @JsonIgnore
     @TableField(value = "is_delete")
     private Short deleted;

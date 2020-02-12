@@ -17,7 +17,6 @@ import java.util.List;
 @Accessors(chain= true)
 @EqualsAndHashCode(callSuper=true)
 public class Blog extends BasePO{
-    private Long id;
     private String title;
     private String content;
     @TableField(value="content_HTML")
