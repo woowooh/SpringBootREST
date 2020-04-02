@@ -36,8 +36,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="user_t" domainObjectName="User"
-               >
+        <table tableName="user_t" domainObjectName="User">
+        </table>
+        <table tableName="blog_t" domainObjectName="Blog">
+            <columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="content_HTML" javaType="java.lang.String" jdbcType="VARCHAR" />
         </table>
     </context>
 </generatorConfiguration>
